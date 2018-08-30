@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const dotenv = require('dotenv').config();
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const adminRouter = require('./routes/admin');
@@ -11,6 +13,16 @@ const classRouter = require('./routes/class');
 const teacherRouter = require('./routes/teacher');
 
 const app = express();
+
+//mongobd connection
+mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log('mongobd connect');
+  
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
