@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const studentConroller=require('../controllers/student')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('student');
-});
+router.get('/add',studentConroller.newStudentForm);
+router.post('/add',studentConroller.addNewStudent);
+
+router.get('/all',studentConroller.getAllStudents);
+router.get('/show/:id',studentConroller.getStudentById);
 
 module.exports = router;
