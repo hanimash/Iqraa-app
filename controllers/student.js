@@ -1,8 +1,8 @@
 const Student = require('../models/student');
 
 module.exports={
-    newStudentForm: (req,res,next)=>{
-        res.render('newStudentForm');
+    studentForm: (req,res,next)=>{
+        res.render('studentForm');
     },
     addNewStudent:async (req,res,next)=>{
         const student = await (new Student(req.body)).save();
@@ -11,18 +11,24 @@ module.exports={
                 });
     },
     getAllStudents:async (req,res,next)=>{
-        const studnts = await Student.find();
+        const studnts = await Student.find().exec();
+        if(!students.length) return next();
         res.status(201).json({
                     message: 'success',
-                    resultNumber: studnts.length,
-                    studnts: studnts
+                    resultNumber: students.length,
+                    students: students
                 });
     },
     getStudentById:async (req,res,next)=>{
-        const student = await Student.findById(req.params.id);
-        res.status(201).json({
-                        message: 'success',
-                        student: student
-                    });
+        try{
+            const student = await Student.findById(req.params.id);
+            if(!student) return next();
+                res.status(201).json({
+                            message: 'Success',
+                            student: student
+                        });
+        }catch(error){
+            return next(error);
+        }
     }
 }

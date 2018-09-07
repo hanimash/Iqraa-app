@@ -10,9 +10,12 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
+const Promise = require("bluebird");
+
 
 const errorHandlers = require('./handlers/errorHandlers');
 const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
 const adminRouter = require('./routes/admin');
 const studentRouter = require('./routes/student');
 const classRouter = require('./routes/class');
@@ -21,6 +24,7 @@ const teacherRouter = require('./routes/teacher');
 const app = express();
 
 //mongobd connection
+mongoose.Promise = Promise;
 mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -29,7 +33,6 @@ db.once('open', function() {
   console.log('mongobd connect');
   
 });
-mongoose.Promise = global.Promise;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -74,6 +77,7 @@ app.use((req, res, next) => {
 
 
 app.use('/', indexRouter);
+app.use('/login', loginRouter);
 app.use('/admin', adminRouter);
 app.use('/student', studentRouter);
 app.use('/class', classRouter);

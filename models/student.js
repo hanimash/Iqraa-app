@@ -1,12 +1,8 @@
 const mongoose = require('mongoose'),
       Schema = mongoose.Schema,
-      ObjectId = Schema.Types.ObjectId;
 
 
-
-// User Schema
-const studentSchema =new  mongoose.Schema({
-    id: ObjectId,
+const studentSchema =new Schema({
     code: {
       type: String
     },
@@ -127,13 +123,13 @@ const studentSchema =new  mongoose.Schema({
     }
 });
 
-// studentSchema.post('save', (err, doc, next) => {
-//   console.log(err)
-//   if (err.code === 11000) {
-//     next({"err": "Account with this Email already exists."});
-//   } else {
-//     next(err);
-//   }
-// });
+studentSchema.post('save', (err, doc, next) => {
+  console.log(err)
+  if (err.code === 11000) {
+    next({"err": "Account with this Email already exists."});
+  } else {
+    next(err);
+  }
+});
 
 module.exports = mongoose.model('Student', studentSchema);
