@@ -18,7 +18,7 @@ const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const adminRouter = require('./routes/admin');
 const studentRouter = require('./routes/student');
-const classRouter = require('./routes/class');
+const courseRouter = require('./routes/course');
 const teacherRouter = require('./routes/teacher');
 
 const app = express();
@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/bootstrap',express.static(path.join(__dirname,'/node_modules/bootstrap/dist/css')));
 
 // Sessions allow us to store data on visitors from request to request
 // This keeps users logged in and allows us to send flash messages
@@ -80,7 +80,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/admin', adminRouter);
 app.use('/student', studentRouter);
-app.use('/class', classRouter);
+app.use('/course', courseRouter);
 app.use('/teacher', teacherRouter);
 // catch 404 and forward to error handler
 app.use(errorHandlers.notFound);
