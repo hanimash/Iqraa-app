@@ -1,5 +1,23 @@
 extends layout
 
 block content
-  h1 Login Form
-  a(href='/') Back
+  h1.m-4 Login
+  form(action='../login', method='POST')
+    .form-group
+      label(for='email') Email address
+      input#email.form-control(type='email', name='email', aria-describedby='emailHelp', placeholder='Enter email' required)
+      small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+    .form-group
+      label(for='password') Password
+      input#password.form-control(type='password', name='password', placeholder='Password' required)
+    .form-group.form-check
+      input#isStudent.form-check-input(type='radio', name='userType' value='student' checked)
+      label.form-check-label(for='isStudent') Student
+    .form-group.form-check
+      input#isTeacher.form-check-input(type='radio', name='userType' value='teacher')
+      label.form-check-label(for='isTeacher') Teacher
+    .form-group.form-check
+      input#isAdmin.form-check-input(type='radio', name='userType' value='admin')
+      label.form-check-label(for='isAdmin') Administrator
+    button.btn.btn-primary(type='submit') Submit
+
