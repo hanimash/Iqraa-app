@@ -6,7 +6,7 @@ module.exports={
     },
     addNewStudent:async (req,res,next)=>{
         const student = await (new Student(req.body)).save();
-        res.status(201).json({message: 'success save new student in db',
+        res.status(201).json({message: 'success save new student in DB',
                     newStudent: student
                 });
     },
