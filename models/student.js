@@ -1,127 +1,126 @@
-const mongoose = require('mongoose');
-// User Schema
-const studentSchema = mongoose.Schema({
-  Parents: [
-  {firstname: {
-    type: String,
-    required: true
-  }}, 
-  {lastname: {
-    type: String,
-    required: true
-  }},
-  {location:{
-    street: {
+const mongoose = require('mongoose'),
+      Schema = mongoose.Schema,
+
+
+const studentSchema =new Schema({
+    code: {
+      type: String
+    },
+    firstName: {
       type: String,
       required: true
     },
-    number: {
-      type: Number,
-      required: true
-    },
-    postcode: {
-      type: Number,
-      required: true
-    },
-    city: {
+    lastName: {
       type: String,
       required: true
-    } 
-  }},
-  {email: {
-    type: String,
-    required: true, 
-    unique: true
-  }},
-  {mobile: {
-    type: Number, 
-    required: true
-  }},
-  {password: {
-    type: String,
-    required: false
-  }},
-  {msgCenter:[
-    {
-      msgDate :{
+    },
+    birthday: {
+      type: Date,
+      required: true
+    },
+    placeOfBirth: {
+        type: String
+      },
+    regDate:{
         type : Date,
-        default: Date.now 
+        default: new Date()
       },
-      msgTitle:{
-        type: String 
+    regInfo:{
+        type:String
       },
-      msgBody:{
-        type: String
+    regEmployer:{
+        type:String
+    },
+    nationality: {
+      type: String,
+    },
+    daysPresent:[
+      {
+        date:{
+         type : Date 
+        },
+        isComing:{
+          type: Boolean
+        },
+        description:{
+          type:String
+        }
       }
-    }
-  ]},
-  {student:[
-    {firstname: {
+    ],
+    documents:[
+      {
+        date:{
+          type : Date 
+        },
+        file:{
+          type: String
+        },
+        description:{
+          type:String
+        }
+      }
+    ],
+    regFee:[
+      {
+        date:{
+          type : Date,
+          default: Date.now
+        },
+        amount:{
+          type: Number
+        },
+        description:{
+          type:String
+        }
+      }
+    ],
+    parent1Name: {
       type: String,
       required: true
-    }},
-    {lastname: {
+    },
+    parent2Name: {
       type: String,
-      required: true
-    }},
-    {Birthday: {
-      type: String,
-      required: true
-    }},
-    {placeOfBirth: {
+    }, 
+    street: {
         type: String,
-        required: true
-      }},
-    {reg :[
-      {regDate:{
-        type : Date 
-      }},
-      {reginfo:{
-        type:String
-      }},
-      {regEmployer:{
-        type:String
-      }}
-    ]},
-    {nationality: {
+      },
+    hauseNumber: {
+        type: Number,
+      },
+    postcode: {
+        type: Number,
+      },
+    city: {
+        type: String,
+    },
+    email: {
       type: String,
+      unique: true
+    },
+    mobile: {
+      type: String, 
       required: true
-    }},
-    {time:[
-      {date:{
-        type : Date 
-      }},
-      {isComing:{
-        type: Boolean
-      }},
-      {description:{
-        type:String
-      }}
-    ]},
-    {documents:[
-      {date:{
-        type : Date 
-      }},
-      {file:{
-        type: String
-      }},
-      {description:{
-        type:String
-      }}
-    ]},
-    {regFee:[
-      {date:{
-        type : Date 
-      }},
-      {amount:{
-        type: Number
-      }},
-      {description:{
-        type:String
-      }}
-    ]}
-  ]}
-  ]
+    },
+    password: {
+      type: String,
+    },
+    msgCenter:[
+      {
+        msgDate :{
+          type : Date
+        },
+        msgTitle:{
+          type: String 
+        },
+        msgBody:{
+          type: String
+        }
+      }
+    ],
+    isActive: {
+      type: Boolean,
+      default: true
+    }
 });
 
 studentSchema.post('save', (err, doc, next) => {
@@ -133,4 +132,4 @@ studentSchema.post('save', (err, doc, next) => {
   }
 });
 
-const student = module.exports = mongoose.model('Student', studentSchema);
+module.exports = mongoose.model('Student', studentSchema);
