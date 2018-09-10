@@ -20,13 +20,34 @@ const studentSchema =new Schema({
     },
     placeOfBirth: String,
     gender:String,
+    nationality: String,
+    parent1: {
+      type: String,
+      required: true
+    },
+    parent2: String, 
+    street: String,
+    hauseNumber: String,
+    postcode: String,
+    city: String,
+    email: {
+      type: String,
+      required: true
+    },
+    password: {
+      type: String, 
+      required: true
+    },
+    mobile: {
+      type: String, 
+      required: true
+    },
     regDate:{
         type : Date,
         default: new Date()
       },
     regInfo: String,
-    regEmployer:String,
-    nationality: String,
+    regEmployee:String,
     daysPresent:[
       {
         date:{
@@ -67,25 +88,10 @@ const studentSchema =new Schema({
         }
       }
     ],
-    parent1Name: {
-      type: String,
-      required: true
+    isActive: {
+      type: Boolean,
+      default: true
     },
-    parent2Name: String, 
-    street: String,
-    hauseNumber: String,
-    postcode: String,
-    city: String,
-    email: {
-      type: String,
-      unique: true
-    },
-    mobile: {
-      type: String, 
-      required: true
-    },
-    password: String,
-    token:String,
     msgCenter:[
       {
         msgDate :{
@@ -99,19 +105,8 @@ const studentSchema =new Schema({
         }
       }
     ],
-    isActive: {
-      type: Boolean,
-      default: true
-    }
+    token:String,
 });
 
-studentSchema.post('save', (err, doc, next) => {
-  console.log(err)
-  if (err.code === 11000) {
-    next({"err": "Account with this Email already exists."});
-  } else {
-    next(err);
-  }
-});
 
 module.exports = mongoose.model('Student', studentSchema);

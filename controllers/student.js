@@ -1,8 +1,12 @@
 const Student = require('../models/student');
-
+const Config = require('../models/config');
 module.exports={
-    studentForm: (req,res,next)=>{
-        res.render('studentForm');
+    studentForm:async (req,res,next)=>{
+        const dataConfig=await Config.find();
+        const newStudentCode='STU-'+((dataConfig[0].studentLastNr*1)+1);
+        console.log(newStudentCode);
+        
+        res.render('studentForm',{newStudentCode});
     },
     addNewStudent:async (req,res,next)=>{
         const student = await (new Student(req.body)).save();

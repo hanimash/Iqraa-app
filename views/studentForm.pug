@@ -1,6 +1,7 @@
 extends layout
+include ./mixins/_studentForm
+
 
 block content
-    h1 add new student
-
-//- add STUDENT form for new insert and for Update
+    h1 Add new student
+    +studentForm(student,newStudentCode)
