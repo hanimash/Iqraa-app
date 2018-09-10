@@ -14,26 +14,19 @@ const studentSchema =new Schema({
       type: String,
       required: true
     },
-    birthday: {
+    birthdate: {
       type: Date,
       required: true
     },
-    placeOfBirth: {
-        type: String
-      },
+    placeOfBirth: String,
+    gender:String,
     regDate:{
         type : Date,
         default: new Date()
       },
-    regInfo:{
-        type:String
-      },
-    regEmployer:{
-        type:String
-    },
-    nationality: {
-      type: String,
-    },
+    regInfo: String,
+    regEmployer:String,
+    nationality: String,
     daysPresent:[
       {
         date:{
@@ -78,21 +71,11 @@ const studentSchema =new Schema({
       type: String,
       required: true
     },
-    parent2Name: {
-      type: String,
-    }, 
-    street: {
-        type: String,
-      },
-    hauseNumber: {
-        type: Number,
-      },
-    postcode: {
-        type: Number,
-      },
-    city: {
-        type: String,
-    },
+    parent2Name: String, 
+    street: String,
+    hauseNumber: String,
+    postcode: String,
+    city: String,
     email: {
       type: String,
       unique: true
@@ -101,9 +84,8 @@ const studentSchema =new Schema({
       type: String, 
       required: true
     },
-    password: {
-      type: String,
-    },
+    password: String,
+    token:String,
     msgCenter:[
       {
         msgDate :{

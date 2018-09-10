@@ -48,7 +48,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/bootstrap',express.static(path.join(__dirname,'/node_modules/bootstrap/dist/css')));
+app.use('/bootstrap',express.static(path.join(__dirname,'/node_modules/bootstrap/dist')));
+app.use('/jquery',express.static(path.join(__dirname,'/node_modules/jquery/dist')));
 
 // Sessions allow us to store data on visitors from request to request
 // This keeps users logged in and allows us to send flash messages

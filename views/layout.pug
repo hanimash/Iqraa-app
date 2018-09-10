@@ -2,7 +2,22 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/bootstrap/bootstrap.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    script(src='jquery/jquery.min.js')
+    script(src='bootstrap/js/bootstrap.min.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    nav.navbar.navbar-dark.bg-dark
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/') IQRAA CENTER
+        ul.nav.navbar-nav.navbar-right
+          li
+            a.btn.btn-primary(href='/login')
+              span.glyphicon.glyphicon-star(aria-hidden='true')
+              |  Login
+
+    .container
+      .row
+        .col-12 
+          block content
