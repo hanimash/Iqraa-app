@@ -1,4 +1,75 @@
-extends layout
+extends appLayout
+include ./mixins/_helper
+
 
 block content
-  h1 Welcome to student page
+    .container
+        .row.bg-light.text-center.pt-5.pb-2
+            .col-sm-12
+                h3.text-dark
+                    i.fas.fa-user-graduate.fa-1x.mr-3
+                    | STUDENTS
+        .row.p-4.d-flex.justify-content-center.bg-light.border-bottom.border-dark.mb-3
+            a.btn.btn-light.border.m-2(href='../../student/list')
+                i.fas.fa-list.mr-3
+                | Students list
+            a.btn.btn-light.border.m-2(href='../../student/add')
+                i.fas.fa-plus.mr-3
+                | Add new Student
+            a.btn.btn-light.border.m-2(href='../../student/Financial')
+                i.fas.fa-money-check-alt.mr-3
+                | Financial report
+        .row
+          .col-md-12
+            h4
+              i.fas.fa-graduation-cap.fa-1x.mr-3
+              | Student profile : #{student.firstName}  #{student.lastName}
+        .row
+          .col-md-12
+            ul.list-group.pt-3
+              li.list-group-item
+                span.font-weight-bold Code: 
+                span  #{student.code}
+              li.list-group-item
+                span.font-weight-bold First name: 
+                span  #{student.firstName}
+              li.list-group-item
+                span.font-weight-bold Last name: 
+                span  #{student.lastName}
+              li.list-group-item
+                span.font-weight-bold Gender: 
+                span  #{student.gender || 'No data'}
+              li.list-group-item
+                span.font-weight-bold Birthdate: 
+                +ShortDate(student.birthdate)
+              li.list-group-item
+                span.font-weight-bold Place Of Birth: 
+                span  #{student.placeOfBirth || 'No data'}
+              li.list-group-item
+                span.font-weight-bold Nationality: 
+                span  #{student.nationality || 'No data'}
+              li.list-group-item
+                span.font-weight-bold Full name of the first guardian: 
+                span  #{student.parent1}
+              li.list-group-item
+                span.font-weight-bold Full name of the second guardian: 
+                span  #{student.parent2 || 'No data'}
+              li.list-group-item
+                span.font-weight-bold Address: 
+                span  #{student.street} #{student.houseNumber}, 
+                span  #{student.postcode} #{student.city}
+              li.list-group-item
+                span.font-weight-bold Mobile: 
+                span  #{student.mobile}
+              li.list-group-item
+                span.font-weight-bold Email: 
+                span  #{student.email}
+              li.list-group-item
+                span.font-weight-bold Employee of registration: 
+                span  #{student.regEmployee || 'No data'}
+              li.list-group-item
+                span.font-weight-bold Date of registration: 
+                +ShortDate(student.regDate || 'No data')
+              li.list-group-item
+                span.font-weight-bold Information of registration: 
+                span  #{student.regInfo || 'No data'}

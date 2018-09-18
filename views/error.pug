@@ -1,5 +1,7 @@
-extends layout
+extends appLayout
 
-block content
-  h1= message
+block errorMessages
+  .alert.alert-danger(role='alert')
+    h5 Error
+    p= message
 

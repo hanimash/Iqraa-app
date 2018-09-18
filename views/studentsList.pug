@@ -1,23 +1,23 @@
 extends appLayout
-include ./mixins/_studentForm
+include ./mixins/_studentsList
 
 block content
-    .container.pb-5
+    .container
         .row.bg-light.text-center.pt-5.pb-2
             .col-sm-12
-                h3
+                h3.text-dark
                     i.fas.fa-user-graduate.fa-1x.mr-3
                     | STUDENTS
         .row.p-4.d-flex.justify-content-center.bg-light.border-bottom.border-dark.mb-3
-            a.btn.btn-light.border.m-2(href='../../student/list')
+            a.btn.btn-dark.border.m-2(href='../../student/list')
                 i.fas.fa-list.mr-3
                 | Students list
-            a.btn.btn-dark.border.m-2(href='../../student/add')
+            a.btn.btn-light.border.m-2(href='../../student/add')
                 i.fas.fa-plus.mr-3
                 | Add new Student
-            a.btn.btn-light.border.m-2(href='../../student/add')
+            a.btn.btn-light.border.m-2(href='../../student/Financial')
                 i.fas.fa-money-check-alt.mr-3
                 | Financial report
         .row
             .col-md-12
-                +studentForm(student,newStudentCode)
+                +studentsList(students)

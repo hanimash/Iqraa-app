@@ -1,10 +1,12 @@
 const mongoose = require('mongoose'),
-      Schema = mongoose.Schema;
+      Schema = mongoose.Schema,
+      Config = require('../models/config');
 
 
 const studentSchema =new Schema({
     code: {
-      type: String
+      type: String,
+      required:true
     },
     firstName: {
       type: String,
@@ -27,7 +29,7 @@ const studentSchema =new Schema({
     },
     parent2: String, 
     street: String,
-    hauseNumber: String,
+    houseNumber: String,
     postcode: String,
     city: String,
     email: {
@@ -107,6 +109,11 @@ const studentSchema =new Schema({
     ],
     token:String,
 });
-
+studentSchema.pre('save',async (next)=>{
+  await Config.findOneAndUpdate({_id :'5b969d11f761104a3aebe163'},{$inc : {'studentLastNr' : 1}},{new: false});
+  next();
+})
 
 module.exports = mongoose.model('Student', studentSchema);
+
+

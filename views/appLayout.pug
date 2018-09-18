@@ -1,13 +1,41 @@
+include ./mixins/_navbar
 doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/bootstrap/bootstrap.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='../../bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href="../../fontawesome/css/all.css")
+    script(src='../../jquery/jquery.min.js')
+    script(src='../../bootstrap/js/bootstrap.min.js')
+    link(rel='stylesheet', href='/stylesheets/style-dashboard.css')
   body
-    .container
+    +navbar()
+    .container.border
       .row
-        .col-4.col-sm-12 
-          block User
-        .col-8.col-sm-12
+        .col-md-12
+          block messages
+            block errorMessages
+            if locals.flashes
+                    - const categories = Object.keys(locals.flashes)
+                    each category in categories
+                      each message in locals.flashes[category]
+                          .alert.alert-dark.m-3(role='alert')
+                            h5=message
+                              a.btn.btn-light(onClick="this.parentElement.parentElement.remove()") close (x)
+      .row  
+        .col-md-12
           block content
+      footer.row
+        .col-12.text-center.text-muted.mt-3.border-top
+          p copyright 2018
+      //-  Disable the submit button after form-submit and enable it back again after a 3 seconds
+      //-  this ensures that data in not send more than onece
+    script.
+      $("form").on("submit", function() {
+        var btn = $(':submit');
+        btn.prop('disabled', true);
+        setTimeout(function(){
+            btn.prop('disabled', false);
+        }, 3*1000);
+      });
+

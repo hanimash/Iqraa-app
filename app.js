@@ -50,7 +50,7 @@ app.use(expressValidator());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bootstrap',express.static(path.join(__dirname,'/node_modules/bootstrap/dist')));
 app.use('/jquery',express.static(path.join(__dirname,'/node_modules/jquery/dist')));
-
+app.use('/fontawesome',express.static(path.join(__dirname,'/node_modules/@fortawesome/fontawesome-free')));
 // Sessions allow us to store data on visitors from request to request
 // This keeps users logged in and allows us to send flash messages
 app.use(session({

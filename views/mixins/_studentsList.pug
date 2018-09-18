@@ -1,0 +1,35 @@
+mixin studentsList(students={})
+    .row
+        .col-md-12
+            h3
+                i.fas.fa-list.fa-1x.mr-3
+                | students List
+    .row
+        .col-md-12.pt-3.pb-3
+            form.form-inline.md-form.form-sm.m-auto
+                .form-group
+                    i.fa.fa-search(aria-hidden='true')
+                    input.form-control.form-control-sm.ml-3.w-75(type='text', placeholder='Search', aria-label='Search')
+    .table-responsive
+        table.table.table-bordred.table-hover.table-sm
+            thead
+                tr
+                    th Code
+                    th First Name
+                    th Last Name
+                    th Guardian
+                    th Edit
+                    th Show
+                tbody
+                    each stu in students
+                        tr
+                            td= stu.code
+                            td= stu.firstName
+                            td= stu.lastName
+                            td= stu.parent1
+                            td
+                                a.btn.btn-danger.btn-xs(href='../../student',  title="Edit student profile")
+                                    i.fas.fa-user-edit
+                            td
+                                a.btn.btn-primary.btn-xs(href=`../../student/show/${stu.code}`, title="show student profile")
+                                    i.fas.fa-id-card

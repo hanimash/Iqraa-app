@@ -1,0 +1,10 @@
+mixin pagination(page, pages, count)
+  .row
+    .col-md-3
+      if page > 1
+        a(href=`/Students/page/${page - 1}`) Prev
+    .col-md-6
+      p Page #{page} of #{pages} — #{count} total results
+    .col-md-3
+      if page < pages
+        a(href=`/Students/page/${parseFloat(page) + 1}`) Next

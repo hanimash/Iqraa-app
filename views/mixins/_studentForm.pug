@@ -1,66 +1,71 @@
 mixin studentForm(student = {},newStudentCode)
-  form(action=`/add/${student._id || ''}` method="POST"  enctype="multipart/form-data")
-    .form-group
-            label(for='code') Code: 
-                span.text-muted (genrated automatically)
-            input#code.form-control(type='text', name='code', value=newStudentCode || student.code disabled)
-    .form-group
-            label(for='firstName') First name *
-            input#firstName.form-control(type='text', name='firstName',  placeholder='Enter the first name of student' value=student.firstName required)
-    .form-group
-            label(for='lastName') Last name *
-            input#lastName.form-control(type='text', name='lastName',  placeholder='Enter the last name of student' value=student.lastName required)
-    .form-group
-            label(for='birthdate') Birthdate *
-            input#birthdate.form-control(type='date', name='birthdate',  value=(student.birthdate ? student.birthdate.spilt('T')[0] : "") required)
-    .form-group
-            label(for='placeOfBirth') Place of birth
-            input#placeOfBirth.form-control(type='text', name='lastName',  placeholder='Enter student\'s place of birth' value=student.lastName)
-    .form-group
-        label.mr-4 Gender
-        input.ml-3(type="radio" id="male" value="male" name="gender" checked=(student.gender=='male'))
-        label.ml-2(for="male") male
-        input.ml-3(type="radio" id=choice value='female' name="gender" checked=(student.gender=='female'))
-        label.ml-2(for="female") female
-    .form-group
-        label(for='nationality') Nationality
-        input#nationality.form-control(type='text', name='nationality',  placeholder='Enter student\'s nationality' value=student.nationality)
-    .form-group
-        label(for='parent1') Full name of the first guardian *
-        input#parent1.form-control(type='text', name='parent1',  placeholder='Enter full name of the first guardian ' value=student.parent1 required)
-    .form-group
-        label(for='parent2') Full name of the second guardian 
-        input#parent2.form-control(type='text', name='parent2',  placeholder='Enter full name of the second guardian' value=student.parent2)
-    .form-group
-        label(for='street') Street
-        input#street.form-control(type='text', name='street',  placeholder='Enter street' value=student.street)
-    .form-group
-        label(for='hauseNumber') Haus number
-        input#hauseNumber.form-control(type='text', name='hauseNumber',  placeholder='Enter hause number' value=student.hauseNumber)
-    .form-group
-        label(for='postcode') Post code
-        input#postcode.form-control(type='text', name='postcode',  placeholder='Enter post code' value=student.postcode)
-    .form-group
-        label(for='city') City
-        input#city.form-control(type='text', name='city',  placeholder='Enter city name' value=student.city)
-    .form-group
-        label(for='email') Email
-        input#email.form-control(type='email', name='email',  placeholder='Enter email' value=student.email)
-    .form-group
-        label(for='password') Password
-        input#password.form-control(type='password', name='password',  placeholder='Enter password' value=student.password)
-    .form-group
-        label(for='mobile') Mobile
-        input#mobile.form-control(type='tel', name='mobile',  placeholder='Enter mobile' value=student.mobile)
-    .form-group
-        label(for='regDate') Date of registration
-        input#regDate.form-control(type='date', name='regDate',  placeholder='Enter the date of registration' value=student.regDate || ((new Date()).toISOString().split('T')[0]))
-    .form-group
-        label(for='regEmployee') Employee of registration
-        input#regEmployee.form-control(type='text', name='regEmployee',  placeholder='Enter the Employee of registration' value=student.regEmployee)
-    .form-group
-        label(for='regInfo') Information about registration
-        textarea#regInfo.form-control( name='regInfo',  placeholder='Enter information about registration' value=student.regInfo)
-  
-    button.btn.btn-primary(type='submit') Save student data →
+    h3
+        i.fas.fa-plus.fa-1x.mr-3
+        | Add new student
+    form.pt-3(action=`../../student/add/${student._id || ''}` method="POST")
+        .form-group
+                label(for='code') Code: 
+                    span.text-muted (genrated automatically)
+                input#code.form-control(type='text', name='code', value=newStudentCode || student.code)
+        .form-group
+                label(for='firstName') First name *
+                input#firstName.form-control(type='text', name='firstName',  placeholder='Enter the first name of student' value=student.firstName required)
+        .form-group
+                label(for='lastName') Last name *
+                input#lastName.form-control(type='text', name='lastName',  placeholder='Enter the last name of student' value=student.lastName required)
+        .form-group
+                label(for='birthdate') Birthdate *
+                input#birthdate.form-control(type='date', name='birthdate',  value=(student.birthdate ? student.birthdate.spilt('T')[0] : "") required)
+        .form-group
+                label(for='placeOfBirth') Place of birth
+                input#placeOfBirth.form-control(type='text', name='placeOfBirth',  placeholder='Enter student\'s place of birth' value=student.placeOfBirth)
+        .form-group
+            label.mr-4 Gender
+            input.ml-3(type="radio" id="male" value="male" name="gender" checked=(student.gender=='male'))
+            label.ml-2(for="male") male
+            input.ml-3(type="radio" id=choice value='female' name="gender" checked=(student.gender=='female'))
+            label.ml-2(for="female") female
+        .form-group
+            label(for='nationality') Nationality
+            input#nationality.form-control(type='text', name='nationality',  placeholder='Enter student\'s nationality' value=student.nationality)
+        .form-group
+            label(for='parent1') Full name of the first guardian *
+            input#parent1.form-control(type='text', name='parent1',  placeholder='Enter full name of the first guardian ' value=student.parent1 required)
+        .form-group
+            label(for='parent2') Full name of the second guardian 
+            input#parent2.form-control(type='text', name='parent2',  placeholder='Enter full name of the second guardian' value=student.parent2)
+        .form-group
+            label(for='street') Street
+            input#street.form-control(type='text', name='street',  placeholder='Enter street' value=student.street)
+        .form-group
+            label(for='houseNumber') House number
+            input#houseNumber.form-control(type='text', name='houseNumber',  placeholder='Enter house number' value=student.houseNumber)
+        .form-group
+            label(for='postcode') Post code
+            input#postcode.form-control(type='text', name='postcode',  placeholder='Enter post code' value=student.postcode)
+        .form-group
+            label(for='city') City
+            input#city.form-control(type='text', name='city',  placeholder='Enter city name' value=student.city)
+        .form-group
+            label(for='email') Email *
+            input#email.form-control(type='email', name='email',  placeholder='Enter email' value=student.email required)
+        .form-group
+            label(for='password') Password *
+            input#password.form-control(type='password', name='password',  placeholder='Enter password' value=student.password required)
+        .form-group
+            label(for='mobile') Mobile *
+            input#mobile.form-control(type='tel', name='mobile',  placeholder='Enter mobile' value=student.mobile required)
+        .form-group
+            label(for='regDate') Date of registration
+            input#regDate.form-control(type='date', name='regDate',  placeholder='Enter the date of registration' value=student.regDate || ((new Date()).toISOString().split('T')[0]))
+        .form-group
+            label(for='regEmployee') Employee of registration
+            input#regEmployee.form-control(type='text', name='regEmployee',  placeholder='Enter the Employee of registration' value=student.regEmployee)
+        .form-group
+            label(for='regInfo') Information about registration
+            textarea#regInfo.form-control( name='regInfo',  placeholder='Enter information about registration' value=student.regInfo)
+        .form-group
+            button.btn.btn-primary(type='submit')
+                i.fas.fa-user-plus.mr-2
+                | save Data
 
